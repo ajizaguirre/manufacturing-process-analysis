@@ -1,21 +1,6 @@
 Interactive Manufacturing Process Dashboard
 An interactive, single-page web application designed to analyze and visualize key performance indicators from a real-world manufacturing dataset. This project translates complex operational data into an intuitive dashboard, making it easy to identify opportunities for process optimization and quality improvement.
 
-Live Demo Link
-
-Table of Contents
-Project Overview
-
-Key Features
-
-Tech Stack
-
-Data Source
-
-Analytical Insights
-
-How to Run Locally
-
 Project Overview
 The goal of this project was to analyze a manufacturing dataset to uncover the relationships between various process parameters and the resulting product quality. Instead of a static report, the findings are presented in a dynamic, single-page application that allows users to explore the data visually. The dashboard highlights critical insights and provides clear, data-driven recommendations for improving operational efficiency.
 
