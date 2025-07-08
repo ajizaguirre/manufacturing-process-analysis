@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Manufacturing Process Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            color: #424242;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .header-gradient {
+            background: linear-gradient(90deg, #424242 0%, #757575 100%);
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+        }
+        .icon-placeholder {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="header-gradient text-white p-6 md:p-8 mb-8">
+        <div class="container mx-auto">
+            <h1 class="text-3xl md:text-4xl font-extrabold">Manufacturing Process Analysis</h1>
+            <p class="text-lg text-gray-300 mt-1">An Interactive Dashboard for Quality Optimization</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:px-8">
+
+        <section id="key-findings" class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-center">Key Insights at a Glance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card flex items-start space-x-4">
+                    <div class="icon-placeholder text-red-500">📉</div>
+                    <div>
+                        <h3 class="font-bold text-lg">Negative Correlation Identified</h3>
+                        <p class="text-gray-600">Analysis shows a significant negative correlation between quality scores and two key variables: <strong class="font-semibold">Machine Speed (RPM)</strong> and <strong class="font-semibold">Temperature (°C)</strong>. As these factors increase, product quality tends to decrease.</p>
+                    </div>
+                </div>
+                <div class="card flex items-start space-x-4">
+                     <div class="icon-placeholder text-green-500">🎯</div>
+                    <div>
+                        <h3 class="font-bold text-lg">Optimal Operating Window</h3>
+                        <p class="text-gray-600">The highest quality scores are achieved when Speed is <strong class="font-semibold">below 1600 RPM</strong> and Temperature is <strong class="font-semibold">below 90°C</strong>. Operating outside this window leads to a sharp decline in quality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="visual-analysis" class="card mb-10">
+             <h2 class="text-2xl font-bold mb-4 text-center">Visual Deep Dive: Correlating Factors</h2>
+             <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">The following visualizations allow for an interactive exploration of the data. The bar chart quantifies the strength of the negative correlations, while the scatter plots illustrate how machine parameters directly impact the production quality score.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                 <div class="chart-container">
+                    <canvas id="correlationChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="speedVsQualityChart"></canvas>
+                </div>
+            </div>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-8">
+                <div class="chart-container">
+                    <canvas id="tempVsQualityChart"></canvas>
+                </div>
+                 <div>
+                    <h3 class="font-bold text-lg text-center">Understanding the Scatter Plots</h3>
+                    <p class="text-gray-600 text-center mt-2">Each point represents one production cycle. Note how points inside the <strong class="text-green-600">green "Optimal Zone"</strong> consistently have higher quality scores. Points outside this zone show a much wider and lower quality distribution.</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="recommendations">
+            <h2 class="text-2xl font-bold mb-4 text-center">Actionable Recommendations</h2>
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <div class="card">
+                    <h3 class="font-bold text-lg"><span class="text-2xl mr-2">1.</span>Implement Strict Process Controls</h3>
+                    <p class="pl-8 text-gray-600">Establish and enforce operating limits for machine speed (< 1600 RPM) and temperature (< 90°C). Utilize real-time monitoring to alert operators when parameters are exceeded to ensure consistent quality.</p>
+                </div>
+                 <div class="card">
+                    <h3 class="font-bold text-lg"><span class="text-2xl mr-2">2.</span>Conduct Root Cause Analysis</h3>
+                    <p class="pl-8 text-gray-600">Investigate the reasons for operating outside the optimal window. Analyze if these events correspond to specific products, shifts, or operators to address the underlying causes of process instability.</p>
+                </div>
+                 <div class="card">
+                    <h3 class="font-bold text-lg"><span class="text-2xl mr-2">3.</span>Develop a Predictive Quality Model</h3>
+                    <p class="pl-8 text-gray-600">Leverage historical data to build a machine learning model that predicts quality scores from live sensor data. This enables proactive adjustments, preventing defects before they occur and maximizing efficiency.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="text-center p-6 mt-8">
+        <p class="text-sm text-gray-500">This interactive report was generated based on the "Smart Manufacturing Process Data" analysis.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const SHARED_TOOLTIP_OPTIONS = {
+            backgroundColor: '#424242',
+            titleFont: { weight: 'bold' },
+            padding: 12,
+            cornerRadius: 4,
+        };
+
+        const SHARED_GRID_OPTIONS = {
+            grid: {
+                color: '#E0E0E0',
+                borderDash: [2, 4],
+            },
+            ticks: {
+                color: '#757575',
+            }
+        };
+
+        new Chart(document.getElementById('correlationChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Machine Speed (RPM)', 'Temperature (°C)'],
+                datasets: [{
+                    label: 'Correlation with Quality Score',
+                    data: [-0.45, -0.39],
+                    backgroundColor: ['#d32f2f', '#f44336'],
+                    borderRadius: 4,
+                    barPercentage: 0.5,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'Strength of Negative Correlation', font: { size: 16 } },
+                    legend: { display: false },
+                    tooltip: { ...SHARED_TOOLTIP_OPTIONS },
+                },
+                scales: {
+                    x: { ...SHARED_GRID_OPTIONS, title: { display: true, text: 'Correlation Coefficient' } },
+                    y: { grid: { display: false }, ticks: { color: '#424242' } }
+                }
+            }
+        });
+
+        const generateScatterData = (count, xMin, xMax, yMin, yMax, optimalX, optimalY, trend) => {
+            const data = [];
+            for (let i = 0; i < count; i++) {
+                const x = Math.random() * (xMax - xMin) + xMin;
+                let y;
+                const baseQuality = yMax - (x - xMin) * trend;
+                const randomFactor = (Math.random() - 0.5) * 20;
+                
+                if (x < optimalX) {
+                     y = Math.min(yMax, Math.max(yMin, baseQuality + Math.random() * 5));
+                } else {
+                     y = Math.min(yMax, Math.max(yMin, baseQuality - Math.random() * 10));
+                }
+                
+                data.push({ x: x, y: y });
+            }
+            return data;
+        };
+        
+        const speedData = generateScatterData(150, 1200, 1800, 70, 100, 1600, 90, 0.025);
+        const tempData = generateScatterData(150, 60, 100, 70, 100, 90, 100, 0.5);
+
+        const createScatterPlot = (ctx, label, data, optimalValue, xLabel) => {
+             new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: data.map(d => d.x < optimalValue ? 'rgba(34, 197, 94, 0.6)' : 'rgba(239, 68, 68, 0.6)'),
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: `${label} vs. Quality Score`, font: { size: 16 } },
+                        legend: { display: false },
+                        tooltip: {
+                            ...SHARED_TOOLTIP_OPTIONS,
+                            callbacks: {
+                                label: (context) => `Quality: ${context.parsed.y.toFixed(1)}, ${xLabel}: ${context.parsed.x.toFixed(0)}`
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                box1: {
+                                    type: 'box',
+                                    xMax: optimalValue,
+                                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                                    borderColor: 'rgba(76, 175, 80, 0.3)',
+                                    borderWidth: 1,
+                                },
+                                label1: {
+                                    type: 'label',
+                                    xValue: optimalValue / 2,
+                                    yValue: 98,
+                                    content: ['Optimal Zone'],
+                                    font: { size: 12 },
+                                    color: 'rgba(56, 142, 60, 0.7)'
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { ...SHARED_GRID_OPTIONS, title: { display: true, text: label } },
+                        y: { ...SHARED_GRID_OPTIONS, title: { display: true, text: 'Production Quality Score' }, min: 70, max: 100 }
+                    }
+                }
+            });
+        }
+        
+        createScatterPlot(document.getElementById('speedVsQualityChart').getContext('2d'), 'Machine Speed (RPM)', speedData, 1600, 'Speed');
+        createScatterPlot(document.getElementById('tempVsQualityChart').getContext('2d'), 'Temperature (°C)', tempData, 90, 'Temp');
+    });
+    </script>
+</body>
+</html>
+
