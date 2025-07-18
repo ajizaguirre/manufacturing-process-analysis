@@ -6,7 +6,7 @@ import seaborn as sns
 # Load the real-world dataset from a remote URL (e.g., a GitHub Gist)
 # In a real scenario, you would download this from Kaggle: https://www.kaggle.com/datasets/programmer3/smart-manufacturing-process-data
 try:
-   # url = 'https://gist.githubusercontent.com/ajizaguirre/bf04d6229e0d3674da9b5602c5758933/raw/221199b086e39c8718f5b6df02ab8ff909a4e598/manufacturing_data.csv' # Dataset loaded into a github gist in order to use
+    url = 'https://gist.githubusercontent.com/ajizaguirre/bf04d6229e0d3674da9b5602c5758933/raw/221199b086e39c8718f5b6df02ab8ff909a4e598/manufacturing_data.csv' # Dataset loaded into a github gist in order to use
     
     df = pd.read_csv(url)
 except:
