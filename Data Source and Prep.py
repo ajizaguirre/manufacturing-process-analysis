@@ -6,7 +6,8 @@ import seaborn as sns
 # Load the real-world dataset from a remote URL (e.g., a GitHub Gist)
 # In a real scenario, you would download this from Kaggle: https://www.kaggle.com/datasets/programmer3/smart-manufacturing-process-data
 try:
-    url = 'https://gist.githubusercontent.com/alejandro-izaguirre/your-gist-id/raw/manufacturing_data.csv' # Replace with a real raw data URL if hosted
+    url = 'https://gist.github.com/ajizaguirre/bf04d6229e0d3674da9b5602c5758933' # Replace with a real raw data URL if hosted
+    
     df = pd.read_csv(url)
 except:
     # As a fallback for this example, we'll generate a sample dataframe that mimics the structure
